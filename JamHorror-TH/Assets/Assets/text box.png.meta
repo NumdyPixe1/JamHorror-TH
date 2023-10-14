@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf24c1bf9ea1dd34191b8d2c68d22214
+guid: 9ae95fa2af26bb9499e26212408ebcdc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,106 +136,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fire_0
+      name: text box_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 40
-        height: 48
+        x: 2
+        y: 2
+        width: 248
+        height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d4cbed3006e99e4aa74f0be8f73f669
-      internalID: 1934998602
+      spriteID: 09f103d0c1f8d274ca4ed7516cd45d11
+      internalID: -1796013450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fire_1
+      name: text box_1
       rect:
         serializedVersion: 2
-        x: 53
-        y: 1
-        width: 40
-        height: 48
+        x: 264
+        y: 2
+        width: 248
+        height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f46b3f66438fb347bd7b0b9ef598ff7
-      internalID: 74571704
+      spriteID: a5557aa79ebe1034eabc4aac75259fda
+      internalID: 246228490
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fire_2
+      name: text box_2
       rect:
         serializedVersion: 2
-        x: 105
-        y: 1
-        width: 40
-        height: 48
+        x: 526
+        y: 2
+        width: 248
+        height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0094ad68d6061841a6efd48b133ac67
-      internalID: 1222736985
+      spriteID: 738e898232421fd48a01b808ce0d0266
+      internalID: -1839421044
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fire_3
+      name: text box_3
       rect:
         serializedVersion: 2
-        x: 157
-        y: 1
-        width: 40
-        height: 48
+        x: 788
+        y: 2
+        width: 248
+        height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f719fb0d33ee5345aeba92a3d2a3478
-      internalID: 536671914
+      spriteID: a5c73a1a944294e4d97bbb79e29530ce
+      internalID: -1337907916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fire_4
+      name: text box_4
       rect:
         serializedVersion: 2
-        x: 209
-        y: 1
-        width: 40
-        height: 48
+        x: 1050
+        y: 2
+        width: 248
+        height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 341fe2cfaf0468e49be41cc2e1d5dde6
-      internalID: -371243938
+      spriteID: 212c284d019308846b3dab303ec99a7f
+      internalID: 820395735
       vertices: []
       indices: 
       edges: []
@@ -251,11 +251,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Fire_0: 1934998602
-      Fire_1: 74571704
-      Fire_2: 1222736985
-      Fire_3: 536671914
-      Fire_4: -371243938
+      text box_0: -1796013450
+      text box_1: 246228490
+      text box_2: -1839421044
+      text box_3: -1337907916
+      text box_4: 820395735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

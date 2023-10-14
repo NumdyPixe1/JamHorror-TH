@@ -5,13 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-     void ButtonStart()
+  [SerializeField]private static GameManager instance;
+    public void ButtonStart()
     {
-     
-    }
-
-     void Update()
-    {
-        
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }
