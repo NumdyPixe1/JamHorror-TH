@@ -5,7 +5,6 @@ using UnityEngine;
 public class BotRandom : MonoBehaviour
 {
     public bool isWait = false;
-    Animator animator;
     public GameObject item;
     public GameObject rolling;
 
@@ -14,7 +13,6 @@ public class BotRandom : MonoBehaviour
     public List<GameObject> diceBot = new List<GameObject>();
     void Start()
     {
-        animator = GetComponent<Animator>();
         rolling.SetActive(false);
         item.SetActive(false);
 
@@ -25,14 +23,12 @@ public class BotRandom : MonoBehaviour
     }
     public void BotRandomDice()
     {
-        // animator.SetTrigger("Rolling");
-
         if (isWait == false)
         {
             rolling.SetActive(true);
             item.SetActive(false);
 
-            randomBotDice = UnityEngine.Random.Range(0, 3);
+            // randomBotDice = UnityEngine.Random.Range(0, 3);
             if (randomBotDice == 0)
             {
                 if (randomBotDice == 0)
