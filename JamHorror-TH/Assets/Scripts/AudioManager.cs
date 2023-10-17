@@ -6,7 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource audioSource;
 
-    public AudioClip audioClip;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
