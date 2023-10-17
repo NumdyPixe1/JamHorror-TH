@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-namespace A
+using TMPro;
+namespace RandomSystem
 {
   public class Random : MonoBehaviour
   {
+    [SerializeField] private int playerHp;
     public BotRandom botRandom;
     [SerializeField] static private int randomPlayerDice;
     public List<GameObject> dice = new List<GameObject>();
     public GameObject item;
     public GameObject rolling;
 
+    public TextMeshProUGUI text;
 
     [SerializeField] private bool isCheckResult = false;
     [SerializeField] private bool isWait = false;
-    Animator animator;
+    [SerializeField] private bool isHealthMax = false;
 
+    [SerializeField] private List<string> demon = new List<string>();
     void Start()
     {
-      animator = GetComponent<Animator>();
+      HealthSystem();
+
+      text.text = "";
+
       rolling.SetActive(false);
       item.SetActive(false);
 
@@ -27,8 +33,35 @@ namespace A
       {
         dice[i].SetActive(false);
       }
+      demon.Add("Buer");
+      demon.Add("Caim");
     }
+    private void HealthSystem()
+    {
+      playerHp = 3;
+      botRandom.botHp = 3;
+      if (playerHp == 3)
+      {
+        isHealthMax = true;
+        playerHp = 3;
+      }
+      else if (playerHp < 3)
+      {
+        isHealthMax = false;
+      }
 
+
+      if (botRandom.botHp == 3)
+      {
+        botRandom.isHealthMax = true;
+        botRandom.botHp = 3;
+      }
+      else if (botRandom.botHp < 3)
+      {
+        botRandom.isHealthMax = false;
+      }
+
+    }
     public void PickRandom()
     {
       if (isWait == false && isCheckResult == false)
@@ -80,28 +113,110 @@ namespace A
     }
     public void Result()
     {
-
       if (isCheckResult == true && isWait == true)
       {
-        // Debug.Log(randomPlayerDice + " & " + botRandom.randomBotDice);
-        if (randomPlayerDice == 0 && botRandom.randomBotDice == 0) { Debug.Log("It's a tie!, You and bot selected paper" + randomPlayerDice + " & " + botRandom.randomBotDice); }
-        else if (randomPlayerDice == 0 && botRandom.randomBotDice == 1) { Debug.Log("You win!, Paper cover rock" + randomPlayerDice + " & " + botRandom.randomBotDice); }
-        else if (randomPlayerDice == 0 && botRandom.randomBotDice == 2) { Debug.Log("You lose!, Scissors cut paper" + randomPlayerDice + " & " + botRandom.randomBotDice); }
+        if (randomPlayerDice == 0 && botRandom.randomBotDice == 0)
+        {
+          if (isHealthMax == false)
+          {
+            playerHp += 1;
+          }
+          if (botRandom.isHealthMax == false)
+          {
+            botRandom.botHp += 1;
+          }
+          text.SetText("It's a tie!, You and " + demon[0] + " selected paper");
+          Debug.Log("It's a tie!, You and bot selected paper" + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
+        else if (randomPlayerDice == 0 && botRandom.randomBotDice == 1)
+        {
+          playerHp += 0;
+          botRandom.botHp -= 1;
 
-        else if (randomPlayerDice == 1 && botRandom.randomBotDice == 0) { Debug.Log("You lose! Paper cover rock" + randomPlayerDice + " & " + botRandom.randomBotDice); }
-        else if (randomPlayerDice == 1 && botRandom.randomBotDice == 1) { Debug.Log("It's a tie!, You and bot selected rock" + randomPlayerDice + " & " + botRandom.randomBotDice); }
-        else if (randomPlayerDice == 1 && botRandom.randomBotDice == 2) { Debug.Log("You win!, Rock smashes scissors" + randomPlayerDice + " & " + botRandom.randomBotDice); }
+          text.text = "You win!, Paper cover rock.";
+          Debug.Log("You win!, Paper cover rock." + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
+        else if (randomPlayerDice == 0 && botRandom.randomBotDice == 2)
+        {
+          playerHp -= 1;
+          botRandom.botHp += 0;
 
-        else if (randomPlayerDice == 2 && botRandom.randomBotDice == 0) { Debug.Log("You lose!, Scissors cut paper" + randomPlayerDice + " & " + botRandom.randomBotDice); }
-        else if (randomPlayerDice == 2 && botRandom.randomBotDice == 1) { Debug.Log("You win!, Rock smashes scissors" + randomPlayerDice + " & " + botRandom.randomBotDice); }
-        else if (randomPlayerDice == 2 && botRandom.randomBotDice == 2) { Debug.Log("It's a tie!, You and bot selected scissors" + randomPlayerDice + " & " + botRandom.randomBotDice); }
+          text.text = "You lose!, Scissors cut paper.";
+          Debug.Log("You lose!, Scissors cut paper." + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
+
+        else if (randomPlayerDice == 1 && botRandom.randomBotDice == 0)
+        {
+          playerHp -= 1;
+          botRandom.botHp += 0;
+
+          text.text = "You lose! Paper cover rock.";
+          Debug.Log("You lose! Paper cover rock." + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
+        else if (randomPlayerDice == 1 && botRandom.randomBotDice == 1)
+        {
+          if (isHealthMax == false)
+          {
+            playerHp += 1;
+          }
+          if (botRandom.isHealthMax == false)
+          {
+            botRandom.botHp += 1;
+          }
+          text.SetText("It's a tie!, You and " + demon[0] + " selected rock.");
+          Debug.Log("It's a tie!, You and bot selected rock." + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
+        else if (randomPlayerDice == 1 && botRandom.randomBotDice == 2)
+        {
+          playerHp += 0;
+          botRandom.botHp -= 1;
+          text.text = "You win!, Rock smashes scissors.";
+          Debug.Log("You win!, Rock smashes scissors." + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
+
+        else if (randomPlayerDice == 2 && botRandom.randomBotDice == 0)
+        {
+          playerHp += 0;
+          botRandom.botHp -= 1;
+          text.text = "You win!, Scissors cut paper.";
+          Debug.Log("You win!, Scissors cut paper." + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
+        else if (randomPlayerDice == 2 && botRandom.randomBotDice == 1)
+        {
+          playerHp -= 1;
+          botRandom.botHp += 0;
+          text.text = "You lose!, Rock smashes scissors.";
+          Debug.Log("You lose!, Rock smashes scissors." + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
+        else if (randomPlayerDice == 2 && botRandom.randomBotDice == 2)
+        {
+          if (isHealthMax == false)
+          {
+            playerHp += 1;
+          }
+          if (botRandom.isHealthMax == false)
+          {
+            botRandom.botHp += 1;
+          }
+          text.SetText("It's a tie!, You and " + demon[0] + " selected scissors.");
+          Debug.Log("It's a tie!, You and bot selected scissors." + randomPlayerDice + " & " + botRandom.randomBotDice);
+        }
       }
     }
 
 
     void Update()
     {
-
+      if (playerHp == 0)
+      {
+        text.fontSize = 100;
+        text.text = "You Lose";
+      }
+      if (botRandom.botHp == 0)
+      {
+        text.fontSize = 100;
+        text.text = "You Win";
+      }
     }
   }
 }

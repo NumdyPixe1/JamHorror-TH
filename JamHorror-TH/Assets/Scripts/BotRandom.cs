@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class BotRandom : MonoBehaviour
 {
-    public bool isWait = false;
-    public GameObject item;
-    public GameObject rolling;
+    [SerializeField] public int botHp;
 
-    public int randomBotDice;
+    [SerializeField] public bool isWait = false;
+    [SerializeField] public GameObject item;
+    [SerializeField] public GameObject rolling;
+
+    [SerializeField] public int randomBotDice;
+    [SerializeField] public bool isHealthMax = false;
 
     public List<GameObject> diceBot = new List<GameObject>();
     void Start()
