@@ -1,1 +1,1 @@
-# JamHorror-TH
+# Paper Rock Scissor & Dice
