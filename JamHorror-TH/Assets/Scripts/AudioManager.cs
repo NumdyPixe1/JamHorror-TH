@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public Random random;
+    public AudioSource dice;
+    public AudioSource BGM;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        random = GetComponent<Random>();
 
+        dice = GetComponent<AudioSource>();
+        BGM = GetComponent<AudioSource>();
+
+        BGM.Play();
+        DontDestroyOnLoad(BGM);
     }
 
     public void PlaySound()
     {
-        audioSource.Play();
-        //audioClip.P
+        if (random.isWait == true && random.isCheckResult == true)
+        {
+            dice.Play();
+
+        }
+
     }
+
     void Update()
     {
 

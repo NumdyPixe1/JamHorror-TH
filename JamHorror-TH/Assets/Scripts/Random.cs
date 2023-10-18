@@ -2,29 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+//using Unity.VisualScripting;
 
 // namespace RandomSystem
 // {
 public class Random : MonoBehaviour
 {
-  [SerializeField] private int playerHp;
+  public TextMeshProUGUI textRestrat;
+
+  [SerializeField] public int playerHp;
   public BotRandom botRandom;
   [SerializeField] static private int randomPlayerDice;
   public List<GameObject> dice = new List<GameObject>();
   public GameObject item;
+
   public GameObject rolling;
+  public GameObject textBox;
+  public GameObject rollButton, restartButton;
 
-  public TextMeshProUGUI text;
+  public TextMeshProUGUI text, textHp;
 
-  [SerializeField] private bool isCheckResult = false;
-  [SerializeField] private bool isWait = false;
+  [SerializeField] public bool isCheckResult = false;
+  [SerializeField] public bool isWait = false;
   [SerializeField] private bool isHealthMax = false;
 
   [SerializeField] private List<string> demon = new List<string>();
   void Start()
   {
-    HealthSystem();
-
+    textRestrat.text = "ROLL DICE";
+    playerHp = 3;
+    botRandom.botHp = 3;
+    textBox.SetActive(false);
+    rollButton.SetActive(true);
+    restartButton.SetActive(false);
     text.text = "";
 
     rolling.SetActive(false);
@@ -39,38 +49,38 @@ public class Random : MonoBehaviour
   }
   private void HealthSystem()
   {
-    playerHp = 3;
-    botRandom.botHp = 3;
     if (playerHp == 3)
     {
       isHealthMax = true;
       playerHp = 3;
     }
-    else if (playerHp < 3)
+    else if (playerHp <= 2)
     {
       isHealthMax = false;
     }
-
 
     if (botRandom.botHp == 3)
     {
       botRandom.isHealthMax = true;
       botRandom.botHp = 3;
     }
-    else if (botRandom.botHp < 3)
+    else if (botRandom.botHp <= 2)
     {
       botRandom.isHealthMax = false;
     }
+
 
   }
   public void PickRandom()
   {
     if (isWait == false && isCheckResult == false)
     {
+      textBox.SetActive(false);
       rolling.SetActive(true);
       item.SetActive(false);
 
       randomPlayerDice = UnityEngine.Random.Range(0, 3);
+      botRandom.randomBotDice = UnityEngine.Random.Range(0, 3);
       if (randomPlayerDice == 0)//ออกกระดาษ
       {
         Debug.Log(randomPlayerDice);
@@ -107,13 +117,17 @@ public class Random : MonoBehaviour
     isCheckResult = true;
     Result();
     yield return new WaitForSeconds(0.5f);
+    textBox.SetActive(true);
     item.SetActive(true);
     rolling.SetActive(false);
+    yield return new WaitForSeconds(0.5f);
     isWait = false;
     isCheckResult = false;
+
   }
   public void Result()
   {
+
     if (isCheckResult == true && isWait == true)
     {
       if (randomPlayerDice == 0 && botRandom.randomBotDice == 0)
@@ -164,6 +178,7 @@ public class Random : MonoBehaviour
         {
           botRandom.botHp += 1;
         }
+
         text.SetText("It's a tie!, You and " + demon[0] + " selected rock.");
         Debug.Log("It's a tie!, You and bot selected rock." + randomPlayerDice + " & " + botRandom.randomBotDice);
       }
@@ -199,6 +214,7 @@ public class Random : MonoBehaviour
         {
           botRandom.botHp += 1;
         }
+
         text.SetText("It's a tie!, You and " + demon[0] + " selected scissors.");
         Debug.Log("It's a tie!, You and bot selected scissors." + randomPlayerDice + " & " + botRandom.randomBotDice);
       }
@@ -208,15 +224,29 @@ public class Random : MonoBehaviour
 
   void Update()
   {
+    HealthSystem();
+
+    textHp.text = playerHp.ToString();
+    botRandom.textHp.text = botRandom.botHp.ToString();
     if (playerHp == 0)
     {
+      rollButton.SetActive(false);
+      // restartButton.SetActive(true);
+
       text.fontSize = 100;
-      text.text = "You Lose";
+      text.text = "YOU LOSE";
+      // textRestrat.text = "RESTART";
+
     }
     if (botRandom.botHp == 0)
     {
+      rollButton.SetActive(false);
+      // restartButton.SetActive(true);
+
       text.fontSize = 100;
-      text.text = "You Win";
+      text.text = "YOU WIN";
+      // textRestrat.text = "RESTART";
+
     }
   }
 }

@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BotRandom : MonoBehaviour
 {
     [SerializeField] public int botHp;
-
+    public TextMeshProUGUI textHp;
     [SerializeField] public bool isWait = false;
-    [SerializeField] public GameObject item;
-    [SerializeField] public GameObject rolling;
+    public GameObject item;
+    public GameObject rolling;
 
     [SerializeField] public int randomBotDice;
     [SerializeField] public bool isHealthMax = false;
@@ -72,6 +73,7 @@ public class BotRandom : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             item.SetActive(true);
             rolling.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
             isWait = false;
         }
 
